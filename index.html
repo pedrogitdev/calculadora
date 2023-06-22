@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de Média Escolar</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+
+    body {
+      background-color: #000;
+      color: #fff;
+      font-family: "Russo One", sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrapper {
+      background-color: #000;
+      padding: 20px;
+    }
+
+    svg {
+      width: 100%;
+      height: 200px;
+      margin-bottom: 20px;
+    }
+
+    svg text {
+      animation: stroke 5s infinite alternate;
+      stroke-width: 2;
+      stroke: #040a13;
+      fill: transparent;
+      font-size: 100px;
+    }
+
+    @keyframes stroke {
+      0% {
+        fill: rgba(72, 138, 204, 0);
+        stroke: rgb(38, 39, 40);
+        stroke-dashoffset: 25%;
+        stroke-dasharray: 0 50%;
+        stroke-width: 2;
+      }
+      70% {
+        fill: rgba(72, 138, 204, 0);
+        stroke: rgb(25, 26, 26);
+      }
+      80% {
+        fill: rgba(72, 138, 204, 0);
+        stroke: rgb(14, 14, 15);
+        stroke-width: 3;
+      }
+      100% {
+        fill: rgb(0, 0, 0);
+        stroke: rgba(0, 0, 0, 0);
+        stroke-dashoffset: -25%;
+        stroke-dasharray: 50% 0;
+        stroke-width: 0;
+      }
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 20px;
+      text-align: left;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #1c1d1c;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 5px;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <svg>
+      <text x="50%" y="50%" dy=".35em" text-anchor="middle">
+        Calculadora de Média
+      </text>
+    </svg>
+	<h2>Digite o número sem Vírgulas<h2></h2>
+
+    <form id="grade-form">
+      <label for="grade1">Nota 1:</label>
+      <input type="number" id="grade1" required>
+
+      <label for="grade2">Nota 2:</label>
+      <input type="number" id="grade2" required>
+
+      <label for="grade3">Nota 3:</label>
+      <input type="number" id="grade3" required>
+
+      <label for="grade4">Nota 4:</label>
+      <input type="number" id="grade4" required>
+
+      <button type="submit">Calcular Média</button>
+    </form>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    document.getElementById('grade-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Impede o envio do formulário
+
+      // Obtém os valores das notas
+      var grade1 = parseFloat(document.getElementById('grade1').value);
+      var grade2 = parseFloat(document.getElementById('grade2').value);
+      var grade3 = parseFloat(document.getElementById('grade3').value);
+      var grade4 = parseFloat(document.getElementById('grade4').value);
+
+      // Calcula a média
+      var average = ((grade1 + grade2 + grade3 + grade4) / 4) / 10;
+
+      // Exibe o resultado
+      document.getElementById('result').innerHTML = 'Sua média final é: ' + average.toFixed(2);
+    });
+  </script>
+</body>
+</html>
